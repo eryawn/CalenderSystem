@@ -1,0 +1,58 @@
+关于文件：
+整个日历文件以有begin和end
+期间可能有很多时间也是begin和end
+
+顺序一定是：
+dtstart
+dtend
+【rrule】
+location
+summary
+
+logic：
+
+读行：
+先把日历的start和end忽略
+
+每个事件建个结构体，output的时候直接访问结构体判断再print
+
+属性进结构体的时候，提前处理好，包括：月份，日期，年份，星期，开始时间，结束时间，
+事件描述，总结，一个flag表明重复*************（如果重复的话做个循环反复打印这个事件）
+
+一个while循环 遇到endvcalendar结束
+	vevent开始结构体 end结束
+		通过string比较截取数据
+
+
+关于时间：
+每个结构体做一个isdone变量 做三个变量  持续int  	day int 		hour int
+
+设置两个时间。
+前时间小于等于结构体day，就打印
+设一个变量表示是不是第一件事，如果是第一件事则把当天日期打出来
+	判断 如果repeat是N，表示不重复，那么把他改成Y表示已经打过了
+		对于repeat的事件，只有start==day才打印保证不每天重复打印
+		如果repeat不是N也不是y表明要重复，那么把day加七天
+		用老师的加函数把日期加七天，再更新到day里去比
+		注意打重复项的时候要设判断小于until
+
+前时间加一天
+最后前时间大于后时间表示循环结束
+
+解决两个问题：
+1	开始时间在后，如何把之前开始的循环事件推进到当期
+	forloop所有结构体开始结束全部增7同时更新day 直到大于等于start
+
+2	是否需要每天重新排序
+	每天时间没开始之前再排下序
+
+
+拆分：
+文件指针开始到文件关闭		获取事件		check
+之后的for循环			update
+output				output
+format date			format date
+
+排序只需要dtstart 再增加一个dtend同步前推  尝试用function把字符串处理成时间
+
+231500

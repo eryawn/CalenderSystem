@@ -1,0 +1,71 @@
+/*
+ * calprint.c
+ *
+ * Starter file provided to students for Assignment #1, SENG 265,
+ * Summer 2019.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LINE_LEN 80
+#define MAX_EVENTS 500
+
+
+/*
+ * A struct type you are welcome to use, but are not
+ * required to use.
+ */
+
+typedef struct event_t
+{
+    char dt_start[MAX_LINE_LEN];
+    char dt_end[MAX_LINE_LEN];
+    char summary[MAX_LINE_LEN];
+    char location[MAX_LINE_LEN];
+    char dt_repeat_until[MAX_LINE_LEN];
+} event_t;
+
+
+/*
+ * Some global variables (as few as possible). Again, you 
+ * are not required to use these -- but ensure that what is
+ * **not** used is deleted.
+ */
+
+event_t entry[MAX_EVENTS];
+int     num_entries = 0;
+
+
+int main(int argc, char *argv[])
+{
+    int from_y = 0, from_m = 0, from_d = 0;
+    int to_y = 0, to_m = 0, to_d = 0;
+    char *filename = NULL;
+    int i; 
+
+    for (i = 0; i < argc; i++) {
+        if (strncmp(argv[i], "--from=", 7) == 0) {
+            sscanf(argv[i], "--from=%d/%d/%d", &from_d, &from_m, &from_y);
+        } else if (strncmp(argv[i], "--to=", 5) == 0) {
+            sscanf(argv[i], "--to=%d/%d/%d", &to_d, &to_m, &to_y);
+        } else if (strncmp(argv[i], "--file=", 7) == 0) {
+            filename = argv[i]+7;
+        }
+    }
+
+    if (from_y == 0 || to_y == 0 || filename == NULL) {
+      fprintf(stderr, 
+            "usage: %s --from=dd/mm/yyyy --to=dd/mm/yyyy --file=icsfile\n",
+            argv[0]);
+        exit(1);
+    }
+
+    /* Starting calling your own code from this point. */
+    /* ... 
+       ...
+       ... */
+
+    exit(0);
+}

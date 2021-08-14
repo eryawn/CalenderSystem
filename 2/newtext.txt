@@ -1,0 +1,18 @@
+一个二维数组存事件 事件里五个变量 前三个datetime 后两个string
+
+day_header_format
+在里面把datetime处理成string 加上下划线 return回去
+
+get_events
+直接把前三个处理成datetime 后两个处理string
+
+update_events
+更新datetime的日期到可用范围
+
+print_events
+大循环 用datetime比较 用datetime+1
+直接输出 如果建function处理单个事件再返回太麻烦 所以直接输出
+在这里边输出，日期头， 时间先建string再和摘要一起输出
+时间就用之前的function从日期里直接截掉再返回
+
+所以function和cal1完全一致，分别实现， 注意空格补全
